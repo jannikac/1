@@ -1,0 +1,9 @@
+{"rule":"GERMAN_SPELLER_RULE","sentence":"^\\QEin anderer Fehler könnte auftreten, wenn der Speicherbereich von \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q durch \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q reallokiert wird.\\E$"}
+{"rule":"GERMAN_SPELLER_RULE","sentence":"^\\QAus diesem Grund tritt, wenn der \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q Zeiger benutzt wird ein Use-After-Free Fehler auf, wenn auf den befreiten Speicher über den Zeiger \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q zugegriffen wird.\\E$"}
+{"rule":"GERMAN_SPELLER_RULE","sentence":"^\\QBei der Betrachtung der Signatur fällt auf, dass der Parameter mit als Wert übergeben wird (Pass-By-Value).\\E$"}
+{"rule":"GERMAN_SPELLER_RULE","sentence":"^\\QSobald die \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q Methode abgeschlossen ist, geht der String \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q out-of-scope und der Destruktor von \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q wird ausgelöst.\\E$"}
+{"rule":"GERMAN_SPELLER_RULE","sentence":"^\\QZum Erstellen wurde Clang in der Version 13.0.0 und CMake verwendet.\\E$"}
+{"rule":"GERMAN_SPELLER_RULE","sentence":"^\\QDer Präprozessor verarbeitet die CPP-Quelldatei.\\E$"}
+{"rule":"GERMAN_SPELLER_RULE","sentence":"^\\QDie-Objekt-Code Datei wird mit Funktionen aus der Standardbibliothek kombiniert und mithilfe des Linkers zu einer ausführbaren Datei verlinkt.\\E$"}
+{"rule":"GERMAN_SPELLER_RULE","sentence":"^\\QWürden diese erstellt werden, ohne die Header einzubinden, würde ein Kompilierungsfehler entstehen, da der Compiler die Deklarationen nicht finden kann.\\E$"}
+{"rule":"GERMAN_SPELLER_RULE","sentence":"^\\Q\\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q erstellt ein Makro, dass die angegebene Zeichenfolge mithilfe des Präprozessors durch die entsprechende Zeichenfolge ersetzt.\\E$"}

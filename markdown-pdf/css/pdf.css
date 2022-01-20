@@ -1,0 +1,9 @@
+@font-face {
+  font-family: "Rob";
+  src: url("./Roboto-Regular.ttf") format("truetype");
+}
+
+body {
+  font-family: Rob;
+  font-size: 11px;
+}
