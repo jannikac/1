@@ -1,4 +1,4 @@
-# Aufgaben 2 - Zeigerarithmetik
+# Aufgaben 1 - Speicherverwaltung
 
 Hier befinden sich die für die Veranstaltung modernes C++ bearbeiteten Aufgaben.
 Zum Erstellen wurde Clang in der Version 13.0.0 und CMake verwendet.
