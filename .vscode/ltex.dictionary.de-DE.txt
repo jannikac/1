@@ -2,3 +2,4 @@ CPP-Datei
 Kompilierungseinheit
 Kompilierungseinheiten
 While-Schleife
+use-after-free

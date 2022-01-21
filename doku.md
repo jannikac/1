@@ -169,7 +169,7 @@ Adresse von `p1` kann `p0` nicht zugewiesen werden, da `p1` schon ein Zeiger ist
 
 Korrekt.
 
-Ausgabe: `Ergebnis: 5`.
+Ausgabe: `Ergebnis: 5`
 
 #### Beispiel 3
 
@@ -199,6 +199,96 @@ Ausgabe: `Ergebnis: 10 und 6`
 
 Kompilierfehler Zeile 5.
 
+Die Referenz `iref` ist eine Referenz auf den Wert von `i`, da `iref` in Zeile 4 als dereferenzierter `iptr` festgelegt ist. Daher ist die erneute Dereferenzierung in Zeile 5 ein Fehler und somit ungültig.
+
+#### Beispiel 8
+
+???
+
+#### Beispiel 9
+
+Kompilierfehler Zeile 7.
+
+Hier wird versucht eine read-only Variable zu verändern. Auf den ersten Blick ist `b` beschreibbar, da `b` nicht `const` ist. Allerdings ist die Referenz `pr` eine Referenz auf einen Zeiger, der auf einen `const int` zeigt. Der Zeiger an sich ist nicht `const` und kann daher verändert werden. Somit wird die Referenz `pr` in Zeile 6 auf die Adresse von `b` verändert. Da das Ziel auf das der Zeiger der Referenz zeigt, allerdings in Zeile 5 als `const` deklariert wurde, kann `*pr` und somit `b` nicht verändert werden.
+
+#### Beispiel 10
+
+Kompilierfehler Zeile 4.
+
+Da hier der Zeiger `p` selbst als `const` deklariert wurde, kann dieser, auch wenn das Ziel in Zeile 3 gelöscht wird, nicht mehr geändert werden. Es wird versucht in Zeile 4 einen `const` Wert zu ändern, was nicht möglich ist.
+
+#### Beispiel 11
+
+Kompilierfehler Zeile 7.
+
+In Zeile 7 wird versucht `jptr` zu ändern. Das ist nicht möglich, da dieser in Zeile 5 als `const` deklariert wurde.
+
+#### Beispiel 12
+
+Korrekt.
+
+Ausgabe: `TRUE`
+
 ### b)
 
+#### Generell
+
+Ein Problem, das entstehen kann, wenn Referenzen als Rückgabetyp verwendet worden ist, dass wenn in der Funktion eine Allokation stattfindet, der Aufrufer der Funktion daran denken muss den Speicher am Ziel der Referenz freizugeben.
+
+???
+
+#### Code Beispiel
+
+Im Code wird nach dem Freigeben von `meat` der Wert auf den `meat` zeigt weiter verwendet (use-after-free). Also gibt die Funktion einen Wert zurück auf den `meat` aktuell zeigt, was prinzipiell alles sein kann. Auch wenn die Funktion keinen `nullptr` zurückgeben kann, kann sie dennoch unerwartetes Verhalten produzieren.
+
+???
+
 ### c)
+
+#### A
+
+Sollte als konstante Referenz übergeben werden, da der Pfad in der Funktion wahrscheinlich nicht geändert wird und eine Referenz nicht `NULL` sein kann.
+
+```cpp
+image image::load(const string& path);
+```
+
+#### B
+
+`source` ist konstante Referenz, da diese nicht bearbeitet wird. `dest` ist eine Referenz, da der Parameter nicht optional ist. `size` wird auch nicht verändert, deshalb konstante Referenz.
+
+```cpp
+void memory_copy(const char& source, char& dest, const size_t& size);
+```
+
+#### C
+
+`result` ist eine Referenz, da der Parameter nicht optional ist und den Wert des Parameters beim Aufrufer ändert. `other` ist eine konstante Referenz, da die Kugel beim Überprüfen auf Schnittpunkte nicht verändert werden muss.
+
+```cpp
+void sphere::does_intersect(const sphere& other, bool& result);
+```
+
+#### D
+
+`size_x` und `size_y` werden als Kopie übergeben, da sie ein eingebauter Typ sind. Der Aufrufer soll `size_x` und `size_y` auch nicht verändern. `color` soll nicht verändert werden, ist allerdings kein eingebauter Typ, deshalb als Referenz.
+
+```cpp
+image::image(int size_x, int size_y, color &data);
+```
+
+#### E
+
+`count` soll nicht verändert werden und ist ein eingebauter Typ, daher Kopie. `elements` soll nicht beim Aufrufer verändert werden und ist nicht optional, daher konstante Referenz.
+
+```cpp
+array::array(int count, const element& elements);
+```
+
+#### F
+
+`image` ist ein nicht-`const` Zeiger, da das Image optional verändert wird. `bool` ist eingebaut, daher Kopie. `scene` ist nicht eingebaut, soll nicht beim Aufrufer verändert werden und ist nicht optional, daher konstante Referenz.
+
+```cpp
+void renderer::execute (const scene& s, image* screenshot, bool make_screenshot);
+```
