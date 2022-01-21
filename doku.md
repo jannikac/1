@@ -132,15 +132,72 @@ Also ist die Ausgabe `24`.
 
 ### a)
 
-BILD EINFÜGEN!
+#### Probleme:
+
+- Variable a wird nie gelöscht → Speicherleck
+- Wenn `w.exit()` 0 ist, wird b gelöscht, ohne jemals allokiert zu sein. Das müsste aber in C++ unproblematisch sein, da Pointer auf dem Stack automatisch zu `nullptr` initialisiert werden.
+- Wenn das Programm in der While-Schleife abstürzt, wird der Speicher, auf den der Zeiger `b` zeigt, nicht gelöscht.
+- Bei jeder Iteration der While-Schleife wird dem Zeiger `b` neuer Speicher zugewiesen. Das `delete` löscht nur den aktuellen `int` auf den `b` zeigt. Der alte zugewiesene Speicher wird nie gelöscht → Speicherleck
+
+#### Tabelle:
+
+![tabelle](images/tabelle.png)
 
 ### b)
 
 ### c)
 
+#### Pointer Aliasing
+
+???
+
+#### Lösung
+
+???
+
 ## Aufgabe 4
 
 ### a)
+
+#### Beispiel 1
+
+Kompilierfehler Zeile 5.
+
+Adresse von `p1` kann `p0` nicht zugewiesen werden, da `p1` schon ein Zeiger ist. Somit würde man versuchen auf die Adresse der Adresse des Ints zuzugreifen, was nicht funktioniert.
+
+#### Beispiel 2
+
+Korrekt.
+
+Ausgabe: `Ergebnis: 5`.
+
+#### Beispiel 3
+
+Korrekt.
+
+Ausgabe: `0`
+
+#### Beispiel 4
+
+Korrekt.
+
+#### Beispiel 5
+
+Kompilierfehler Zeile 3.
+
+`a` ist als `const int` deklariert, kann deshalb nicht verändert werden. Weist man nun die nicht-`const` Referenz `b` einer `const` Referenz `a` zu, würde man das `const` umgehen, was nicht möglich ist.
+
+Ausgabe: `Ergebnis: 0x55555556aeb0`
+
+#### Beispiel 6
+
+Korrekt.
+
+Ausgabe: `Ergebnis: 10 und 6`
+
+#### Beispiel 7
+
+Kompilierfehler Zeile 5.
 
 ### b)
 
