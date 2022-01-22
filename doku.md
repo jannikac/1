@@ -147,13 +147,7 @@ Also ist die Ausgabe `24`.
 
 ### c)
 
-#### Pointer Aliasing
-
-???
-
-#### Lösung
-
-???
+Aliasing beschreibt die Situation, wenn der gleiche Speicherbereich von Zeigern mit unterschiedlichem Namen angesprochen wird. Im Codebeispiel wird der Speicher an `f` von `ptr_f` und `ptr_i` referenziert. Ein Problem hier ist, dass in Zeile 5 die Speicheradresse auf den Float `f` in einen Zeiger vom Typ `int` gecastet wird. Das Problem dabei ist, dass ein `float` nicht den gleichen Speicher, wie ein `int` verbraucht. Daher zeigt `ptr_i` zwar auf den gleichen Speicher, ist allerdings ein Zeiger auf einen `int`. Aus diesem Grund entsteht unvorhersehbares Verhalten, wenn `ptr_i` dereferenziert wird.
 
 ## Aufgabe 4
 
