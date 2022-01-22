@@ -145,6 +145,14 @@ Also ist die Ausgabe `24`.
 
 ### b)
 
+- `p.candles` und `p.eyes` liegen auf dem Stack, `p.teeth` liegt im Heap, wegen des `new` Keyword.
+- Der Integer mit dem Wert `32` ist `p.teeth` und liegt auf dem Heap.
+- `p.teeth` wird zwar in Zeile 5 allokiert, aber nie freigegeben → Speicherleck.
+- Was ändert sich?
+  - `p.candles`, `p.eyes` und `p.teeth` liegen alle auf dem Heap.
+  - Der Integer liegt immer noch im Heap.
+  - Der Zeiger `p` weist Heap Speicher für eine `pumpkin`-Instanz zu, welcher allerdings nie freigegeben wird.
+
 ### c)
 
 Aliasing beschreibt die Situation, wenn der gleiche Speicherbereich von Zeigern mit unterschiedlichem Namen angesprochen wird. Im Codebeispiel wird der Speicher an `f` von `ptr_f` und `ptr_i` referenziert. Ein Problem hier ist, dass in Zeile 5 die Speicheradresse auf den Float `f` in einen Zeiger vom Typ `int` gecastet wird. Das Problem dabei ist, dass ein `float` nicht den gleichen Speicher, wie ein `int` verbraucht. Daher zeigt `ptr_i` zwar auf den gleichen Speicher, ist allerdings ein Zeiger auf einen `int`. Aus diesem Grund entsteht unvorhersehbares Verhalten, wenn `ptr_i` dereferenziert wird.
@@ -197,7 +205,11 @@ Die Referenz `iref` ist eine Referenz auf den Wert von `i`, da `iref` in Zeile 4
 
 #### Beispiel 8
 
-???
+Kompilierfehler Zeile 3.
+
+`iptrref` ist eine Referenz auf einen Zeiger, der auf einen `int` zeigt. `&i` also die Speicheradresse von `i` wird zu einem temporären Objekt. Eine nicht-`const` Referenz kann nicht an ein temporäres Objekt gebunden werden. Wäre die Referenz in diesem Fall `const`, würde der Code kompilieren, da die konstante Referenz den temporären Wert "am Leben erhält".
+
+Zusammengefasst ist es in C++ nicht möglich ein temporäres Objekt an eine nicht-`const` Referenz zu binden.
 
 #### Beispiel 9
 
@@ -229,13 +241,15 @@ Ausgabe: `TRUE`
 
 Ein Problem, das entstehen kann, wenn Referenzen als Rückgabetyp verwendet worden ist, dass wenn in der Funktion eine Allokation stattfindet, der Aufrufer der Funktion daran denken muss den Speicher am Ziel der Referenz freizugeben.
 
-???
+Für nicht optionale Parameter eignet es sich eine Referenz bzw. eine konstante Referenz zu verwenden, da diese nie `NULL` sein können und man sich eine Überprüfung auf `NULL` spart.
+
+Referenzen sollten verwendet werden, wenn variablen beim Aufrufer verändert werden sollen und konstante Referenzen sollten verwendet werden, wenn der Typ kein eingebauter Typ ist und nicht beim Aufrufer bearbeitet wird.
 
 #### Code Beispiel
 
 Im Code wird nach dem Freigeben von `meat` der Wert auf den `meat` zeigt weiter verwendet (use-after-free). Also gibt die Funktion einen Wert zurück auf den `meat` aktuell zeigt, was prinzipiell alles sein kann. Auch wenn die Funktion keinen `nullptr` zurückgeben kann, kann sie dennoch unerwartetes Verhalten produzieren.
 
-???
+In diesem Fall wäre die Rückgabe eines `nullptr`s eindeutiger für den Aufrufer.
 
 ### c)
 
